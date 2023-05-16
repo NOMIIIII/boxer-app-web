@@ -1,0 +1,19 @@
+.home-btn {
+  width: 200px;
+  height: 200px;
+  color: darkgray;
+}
+.home-wrapper {
+  align-content: center;
+  justify-content: center;
+}
+
+.backBtnDiv {
+  float: left;
+}
+
+.backBtn {
+
+    background-color: green;
+    border-radius: 10px;
+}
