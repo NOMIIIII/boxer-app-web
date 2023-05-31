@@ -281,6 +281,7 @@ export default function NewFight() {
             let id = _id
 
             localStorage.removeItem("time")
+            setLoading(true)
 
             axios.get(`${baseUrl}/api/videos/${id}`).then(async (data) => {
                 setFights(data.data) // It contains whole data
@@ -612,7 +613,7 @@ export default function NewFight() {
                             // light = {true}
                             // id='ReactPlayer'
                             playing={playing}
-                            controls={true}
+                            // controls={true}
                             width="379"
                             height="300"
                             // onPlay={() => setVideoPaused(false)}

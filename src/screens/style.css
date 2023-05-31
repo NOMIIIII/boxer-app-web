@@ -303,7 +303,8 @@ body {
 .selected-videos {
   margin-top: 10px;
   display: flex;
-  width: 50%;
+  width: auto;
+  max-width: 50%;
   height: 100%;
   overflow-x: auto;
 }

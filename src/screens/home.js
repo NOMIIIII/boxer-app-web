@@ -69,9 +69,13 @@ const Home = () => {
   ]);
   
   const onWeightChange = (weight) => {
-    setWeight(weight);
-    let filtered = fights.filter((item) => item.weight_class == weight);
-    setList(filtered);
+    if(weight !== "none"){
+      setWeight(weight);
+      let filtered = fights.filter((item) => item.weight_class == weight);
+      setList(filtered);
+    }else{
+      setList(fights);
+    }
   };
   const filterList = (text) => {
     console.log(text, "  text");
@@ -350,10 +354,7 @@ const Home = () => {
             <span style={{ marginLeft: "10px" }} className="form-heading">
               ROUNDS
             </span>
-            <div style={{ cursor: "pointer", margin: "20px 10px 10px 20px", position: "relative", width: "10%", height: "80px", overflow: "hidden", backgroundColor: "white", padding: "5px" }}>
-              <img alt='' src={AddImage} className="addImage"  onClick={handleImageClick}/>
-              <input hidden multiple id="fileInput" type="file" accept="video/mp4,video/x-m4v,video/*" onChange={handleChange} />
-            </div>
+           
             <div className="selected-videos">
               {file &&
                 file.length > 0 &&
@@ -379,6 +380,10 @@ const Home = () => {
                     </>
                   );
                 })}
+            </div>
+            <div style={{ cursor: "pointer", margin: "20px 10px 10px 20px", position: "relative", width: "10%", height: "80px", overflow: "hidden", backgroundColor: "white", padding: "5px" }}>
+              <img alt='' src={AddImage} className="addImage"  onClick={handleImageClick}/>
+              <input hidden multiple id="fileInput" type="file" accept="video/mp4,video/x-m4v,video/*" onChange={handleChange} />
             </div>
           </div>
           <div className="input-wrapper">
@@ -441,7 +446,7 @@ const Home = () => {
             className="weight-class"
             id="weight"
           >
-            <option value="">Any WeightClass</option>
+            <option value="none">Any WeightClass</option>
             {weightClasses.map((val) => {
                 return <option value={val}>{val}</option>
               })}
