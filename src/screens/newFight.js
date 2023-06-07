@@ -83,36 +83,31 @@ export default function NewFight() {
                     playerRef.current.seekTo(Math.floor(currentT))
                     progressRef.current[playIndexRef.current] = currentT;
                 }
-            //         else{
-            //             window.currentTimePlayer = 0;
-            //             if (e.code === "KeyK") {
-            //                 // if(playingRef.current){
-            //                     //     getCurrentImageInstance()
-            //         // }
-            //         setPlaying( !playingRef.current)
-            //         playingRef.current = !playingRef.current
-            //     }
-            // }
-            if (e.code === "KeyJ" && playingRef.current) {
-                setPlayback(playbackRef.current - 0.5)
-                playbackRef.current = playbackRef.current - 0.5
-            }
-            if (e.code === "KeyL" && playingRef.current) {
-                setPlayback(playbackRef.current + 0.5)
-                playbackRef.current = playbackRef.current + 0.5
-            }
-            if (e.code === "ArrowRight") {
-                playerRef.current.seekTo(progressRef.current[playIndexRef.current] + 2)
-                progressRef.current[playIndexRef.current] = progressRef.current[playIndexRef.current] + 2
-                // setProgress(progress + 1)
-            }
-            if (e.code === "ArrowLeft") {
-                if(progressRef.current[playIndexRef.current] - 2 > 0){
-                    playerRef.current.seekTo(progressRef.current[playIndexRef.current] - 2)
-                    progressRef.current[playIndexRef.current] = progressRef.current[playIndexRef.current] - 2
+                if (e.code === "KeyJ" && playingRef.current) {
+                    setPlayback(playbackRef.current - 0.5)
+                    playbackRef.current = playbackRef.current - 0.5
                 }
-                // setProgress(progress - 1)
-            }
+                if (e.code === "KeyL" && playingRef.current) {
+                    setPlayback(playbackRef.current + 0.5)
+                    playbackRef.current = playbackRef.current + 0.5
+                }
+                if (e.code === "ArrowRight") {
+                    let forward  = !playingRef.current ? 1 : 2
+                    // let forward  = 1
+                    playerRef.current.seekTo(progressRef.current[playIndexRef.current] + forward)
+                    progressRef.current[playIndexRef.current] = progressRef.current[playIndexRef.current] + forward
+                    // setProgress(progress + 1)
+                }
+                if (e.code === "ArrowLeft") {
+                    let backward  = !playingRef.current ? 1 : 2
+                    // let backward  = 1
+                    if(progressRef.current[playIndexRef.current] - backward > 0){
+                        playerRef.current.seekTo(progressRef.current[playIndexRef.current] - backward)
+                        progressRef.current[playIndexRef.current] = progressRef.current[playIndexRef.current] - backward
+                    }
+                    // setProgress(progress - 1)
+                }
+                activeTextBoxRef.current = false
             }
         }
         
@@ -647,47 +642,6 @@ export default function NewFight() {
                     }
                 </div>
             </div>
-            {/* <div >
-                    {images && images.length > 0 ? 
-                        <Carousel breakPoints={breakPoints}>
-                        {images.map((item, i) => {
-                            if(item == "NoVideo"){
-                                return <Item key={i}>
-                                <img style={{ width: '300px', height: '200px', }} className={"naumanImage"+i} src={blackImage}></img></Item>
-                            }else{
-                                return <Item key={i}>
-                                <img style={{ width: '300px', height: '200px', }} className={"naumanImage"+i} src={URL.createObjectURL(item)}></img></Item>
-                            }
-                    }) }
-                        </Carousel>
-                    : ""}
-            </div> */}
-            {/* <div className="home-wrapper" style={{ display: "flex", justifyContent: "center" }}>
-                <div style={{ width: "44%", display: "flex" }}>
-                    {newFight && newFight?.length > 0 && Array.from(newFight)?.map((item, i) => {
-                        return <div className="videos-bar" style={{  }}>
-                            <div style={{ display: 'flex', }}>
-                                {i < playIndex ? <progress style={{ cursor: "pointer", width: '100px', height: '20px', marginLeft: "10px" }} id="progress" max={videoLength[playIndex]} value={videoLength[playIndex]}>
-                                    Progress
-                                </progress> : 
-                                i == playIndex ? <progress style={{ cursor: "pointer", width: '100px', height: '20px', marginLeft: "10px" }} id="progress" max={videoLength[playIndex]} value={progress[playIndex]}>
-                                    Progress
-                                </progress> :
-                                    <progress style={{ cursor: "pointer", width: '100px', height: '20px', marginLeft: "10px" }} id="progress" max={0} value={0}>
-                                        Progress
-                                    </progress>
-                                }
-                                {markers[i] && markers[i].map((item, key) => {
-                                    let cal = ((progress[playIndex] / videoLength[playIndex]) * 100)
-                                    return (<span className="triangle-down" style={{ left: `${cal}%`, borderTop: item.fighter == 2 ? "15px solid rgb(255, 3, 3)" : "15px solid rgb(29, 41, 255)" }}></span>)
-                                }) 
-                                }
-                            </div>
-                            <h4 style={{ marginLeft: '25px', width: "max-content" }}>ROUND {i + 1}</h4>
-                        </div>
-                    })}
-                </div>
-            </div> */}
             <div className="home-wrapper" style={{ display: "flex", justifyContent: "center" }}>
                 <div style={{ width: "50%", display: "flex" }}>
                     {newFight && newFight?.length > 0 && Array.from(newFight)?.map((item, i) => {
