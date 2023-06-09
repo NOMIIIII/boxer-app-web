@@ -92,14 +92,14 @@ export default function NewFight() {
                     playbackRef.current = playbackRef.current + 0.5
                 }
                 if (e.code === "ArrowRight") {
-                    let forward  = !playingRef.current ? 1 : 2
+                    let forward  = !playingRef.current ? 1 : 1
                     // let forward  = 1
                     playerRef.current.seekTo(progressRef.current[playIndexRef.current] + forward)
                     progressRef.current[playIndexRef.current] = progressRef.current[playIndexRef.current] + forward
                     // setProgress(progress + 1)
                 }
                 if (e.code === "ArrowLeft") {
-                    let backward  = !playingRef.current ? 1 : 2
+                    let backward  = !playingRef.current ? 1 : 1
                     // let backward  = 1
                     if(progressRef.current[playIndexRef.current] - backward > 0){
                         playerRef.current.seekTo(progressRef.current[playIndexRef.current] - backward)
